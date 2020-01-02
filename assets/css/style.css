@@ -1,0 +1,53 @@
+h1 {
+  text-align: center;
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  font-size: xx-large;
+  padding: 20px;
+  color: white;
+  background-color: midnightblue;
+
+}
+
+.container {
+  background-color: rgb(252, 247, 247);
+  margin-right: 10px;
+  width: 20%;
+  float: left;  
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  width: 65%;
+}
+
+form.example button {
+  width: 17%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+.list-group {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  width: 95%;
+}
+
+.list-group-item {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#currentWeather {
+  margin-left: 10px;
+  margin-right: 5px;
+  width: 78%;
+  height: 250px;
+}
