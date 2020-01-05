@@ -34,20 +34,9 @@ form.example button {
   cursor: pointer;
 }
 
-.list-group {
-  margin-top: 10px;
-  margin-bottom: 15px;
-  width: 95%;
-}
-
-.list-group-item {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-#currentWeather {
+/* #currentWeather {
   margin-left: 10px;
   margin-right: 5px;
   width: 78%;
-  height: 250px;
-}
+  height: 300px;
+} */
