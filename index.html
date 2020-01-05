@@ -9,33 +9,25 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="text/javascript" href="jquery.js">
 </head>
 <body>
   <h1>Weather Dashboard</h1>
   <div class="container">
     <h4>Search for a City:</h4>
     <form class="example" action="action_page.php">
-      <input type="text" placeholder="Enter city name..." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
+      <input id="city" type="text" placeholder="Enter city name..." name="search">
+      <button id="citySearch" type="submit"><i class="fa fa-search"></i></button>
     </form>
-    <ul class="list-group">
-      <li class="list-group-item"></li>
-      <li class="list-group-item"></li>
-      <li class="list-group-item"></li>
-      <li class="list-group-item"></li>
-      <li class="list-group-item"></li>
-      <li class="list-group-item"></li>
-      <li class="list-group-item"></li>
-      <li class="list-group-item"></li>
-    </ul>
+    <div class="recentCities"></div>
   </div>
-
-  <div id="currentWeather" class="card">
-    <div class="card-body">
+  <div class="card">
+    <div id="currentWeather" class="card-body">
       This is some text within a card body.
     </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script src="jquery.js"></script>
 </body>
 </html>
