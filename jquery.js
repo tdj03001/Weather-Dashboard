@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 function displayCurrentWeather() {
   var cityName = "boston";
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012";
+  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
   $.ajax({
     url: queryURL,
@@ -13,20 +13,20 @@ function displayCurrentWeather() {
 
     var currentWeather = $("#currentWeather").append($("<div class='currentWeather'>"));
 
-    var icon = response.weather.icon;
-    var weatherImg = $("<img>").attr("src", icon);
+    var icon = response.weather[0].icon;
+    var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
     currentWeather.append(weatherImg);
 
     var city = response.name; 
     var pOne = $("<p>").text("City: " + city);
     currentWeather.append(pOne);
 
-    var date = response.date; //whatever "date" is called
+    var date = response.dt; //whatever "date" is called
     var pTwo = $("<p>").text("Date: " + date);
     currentWeather.append(pTwo);
 
     var temperature = response.main.temp;
-    var pThree = $("<p>").text("Temperature: " + temperature + " Kelvin");
+    var pThree = $("<p>").text("Temperature: " + temperature + "  Fahrenheit");
     currentWeather.append(pThree);
 
     var humidity = response.main.humidity;
