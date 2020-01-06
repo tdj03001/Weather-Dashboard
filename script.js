@@ -122,7 +122,6 @@ function display5DayForecast() {
   var humidity = response.list[3].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayOneForecast.append(pFour);
-
   
   var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather>"));
 
@@ -159,7 +158,6 @@ function display5DayForecast() {
   var humidity = response.list[19].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayThreeForecast.append(pFour);
-
 
   var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather>"));
 
@@ -229,7 +227,6 @@ function displayInput5DayForecast() {
   var humidity = response.list[3].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayOneForecast.append(pFour);
-
   
   var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather>"));
 
@@ -266,7 +263,6 @@ function displayInput5DayForecast() {
   var humidity = response.list[19].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayThreeForecast.append(pFour);
-
 
   var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather>"));
 
@@ -312,15 +308,13 @@ function displayHistory() {
 }; 
 
 
-
-
 }); //closes document.ready
 
 /* NOTES DURING DEVELOPMENT========================================
 
+Need to get previous searches stored locally
 Need to properly format Date on current and forecast weather
 Figure out UV Index for current weather
-Need to get previous searches listed and stored locally
 Should add alert when city not found
 
 
