@@ -21,12 +21,12 @@ function displayCurrentWeather() {
     var pOne = $("<p>").text("City: " + city);
     currentWeather.append(pOne);
 
-    // var date = response.dt; //convert from UTC
-    // var pTwo = $("<p>").text("Date: " + date);
-    // currentWeather.append(pTwo);
+    var date = response.dt; //convert from UTC
+    var pTwo = $("<p>").text("Date: " + date);
+    currentWeather.append(pTwo);
 
     var temperature = response.main.temp;
-    var pThree = $("<p>").text("Temperature: " + temperature + "  Fahrenheit");
+    var pThree = $("<p>").text("Temperature: " + temperature + "  \u2109");
     currentWeather.append(pThree);
 
     var humidity = response.main.humidity;
@@ -66,12 +66,12 @@ function displayInputCurrentWeather() {
     var pOne = $("<p>").text("City: " + city);
     currentWeather.append(pOne);
 
-    // var date = response.dt; //convert from UTC
-    // var pTwo = $("<p>").text("Date: " + date);
-    // currentWeather.append(pTwo);
+    var date = response.dt; //convert from UTC
+    var pTwo = $("<p>").text("Date: " + date);
+    currentWeather.append(pTwo);
 
     var temperature = response.main.temp;
-    var pThree = $("<p>").text("Temperature: " + temperature + "  Fahrenheit");
+    var pThree = $("<p>").text("Temperature: " + temperature + "  \u2109");
     currentWeather.append(pThree);
 
     var humidity = response.main.humidity;
@@ -97,4 +97,120 @@ $("#citySearch").on("click", function(event) {
 }); //closes click event
 
 
-}); //document.ready closing
+function display5DayForecast() {
+  var cityName = "Boston";
+  var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+
+  var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather>"));
+
+  var date = response.list[3].dt; //convert from UTC
+  var pTwo = $("<p>").text("Date: " + date);
+  dayOneForecast.append(pTwo);
+  
+  var icon = response.list[3].weather[0].icon;
+  var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
+  dayOneForecast.append(weatherImg);
+
+  var temperature = response.list[3].main.temp;
+  var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
+  dayOneForecast.append(pThree);
+
+  var humidity = response.list[3].main.humidity;
+  var pFour = $("<p>").text("Humidity " + humidity + "%");
+  dayOneForecast.append(pFour);
+
+  
+  var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather>"));
+
+  var date = response.list[11].dt; //convert from UTC
+  var pTwo = $("<p>").text("Date: " + date);
+  dayTwoForecast.append(pTwo);
+  
+  var icon = response.list[11].weather[0].icon;
+  var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
+  dayTwoForecast.append(weatherImg);
+
+  var temperature = response.list[11].main.temp;
+  var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
+  dayTwoForecast.append(pThree);
+
+  var humidity = response.list[11].main.humidity;
+  var pFour = $("<p>").text("Humidity " + humidity + "%");
+  dayTwoForecast.append(pFour);
+  
+  var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather>"));
+
+  var date = response.list[19].dt; //convert from UTC
+  var pTwo = $("<p>").text("Date: " + date);
+  dayThreeForecast.append(pTwo);
+  
+  var icon = response.list[19].weather[0].icon;
+  var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
+  dayThreeForecast.append(weatherImg);
+
+  var temperature = response.list[19].main.temp;
+  var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
+  dayThreeForecast.append(pThree);
+
+  var humidity = response.list[19].main.humidity;
+  var pFour = $("<p>").text("Humidity " + humidity + "%");
+  dayThreeForecast.append(pFour);
+
+
+  var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather>"));
+
+  var date = response.list[27].dt; //convert from UTC
+  var pTwo = $("<p>").text("Date: " + date);
+  dayFourForecast.append(pTwo);
+  
+  var icon = response.list[27].weather[0].icon;
+  var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
+  dayFourForecast.append(weatherImg);
+
+  var temperature = response.list[27].main.temp;
+  var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
+  dayFourForecast.append(pThree);
+
+  var humidity = response.list[27].main.humidity;
+  var pFour = $("<p>").text("Humidity " + humidity + "%");
+  dayFourForecast.append(pFour);
+  
+  var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather>"));
+
+  var date = response.list[35].dt; //convert from UTC
+  var pTwo = $("<p>").text("Date: " + date);
+  dayFiveForecast.append(pTwo);
+  
+  var icon = response.list[35].weather[0].icon;
+  var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
+  dayFiveForecast.append(weatherImg);
+
+  var temperature = response.list[35].main.temp;
+  var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
+  dayFiveForecast.append(pThree);
+
+  var humidity = response.list[35].main.humidity;
+  var pFour = $("<p>").text("Humidity " + humidity + "%");
+  dayFiveForecast.append(pFour);
+
+  }); //closes the ajax call
+}; //closes display5DayForecast
+display5DayForecast();
+
+
+}); //closes document.ready
+
+/* NOTES DURING DEVELOPMENT========================================
+
+add Date and UV Index to current weather
+still need to get previous searches listed and stored locally
+Still need to get 5day forecast
+Should add alert when city not found
+
+
+===========================================================================*/
