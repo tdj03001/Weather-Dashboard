@@ -4,6 +4,7 @@ $("#citySearch").on("click", function(event) {
   event.preventDefault();
   displayInputCurrentWeather();
   displayInput5DayForecast();
+  displayHistory();
 }); //closes click event
 
 function displayCurrentWeather() {
@@ -306,14 +307,20 @@ function displayInput5DayForecast() {
   }); //closes the ajax call
 }; //closes display5DayForecast
 
+function displayHistory() {
+  $(".recentCities").prepend($("<div class='searchAgain'>")).prepend($("#city").val().toUpperCase().trim());
+}; 
+
+
+
 
 }); //closes document.ready
 
 /* NOTES DURING DEVELOPMENT========================================
 
-add Date and UV Index to current weather
-still need to get previous searches listed and stored locally
-Still need to get 5day forecast
+Need to properly format Date on current and forecast weather
+Figure out UV Index for current weather
+Need to get previous searches listed and stored locally
 Should add alert when city not found
 
 
