@@ -1,12 +1,21 @@
 $(document).ready(function() {
 
+  //function for button click
 $("#citySearch").on("click", function(event) {
   event.preventDefault();
   displayInputCurrentWeather();
   displayInput5DayForecast();
   displayHistory();
+  var value = $(this).siblings("#city").val().toUpperCase();
+  var city = $(this).parent().attr("id");
+  localStorage.setItem(city, value);
 }); 
 
+//on page load, get local storage and diplay on page
+var searchedCity = localStorage.getItem("searchTerm");
+  $(".recentCities").text(searchedCity);
+
+//displays current weather for default city
 function displayCurrentWeather() {
   var cityName = "Conshohocken";  
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
@@ -60,8 +69,10 @@ function displayCurrentWeather() {
   }); //closes first ajax call (everything but UV)
 }; //closes displayCurrentWeather function
 
+//display current weather for default city on page load
 displayCurrentWeather();
 
+//displays current weather for user-input city
 function displayInputCurrentWeather() {
   var cityName = $("#city").val().trim();  
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
@@ -105,9 +116,9 @@ function displayInputCurrentWeather() {
   }); //closes ajax call
 }; //closes displayInputCurrentWeather function
 
-
+//displays 5-day forecast for default city 
 function display5DayForecast() {
-  var cityName = "Boston";
+  var cityName = "Conshohocken";
   var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
 
   $.ajax({
@@ -207,9 +218,11 @@ function display5DayForecast() {
 
   }); //closes the ajax call
 }; //closes display5DayForecast
+
+//display 5-day forecast for default city on page load
 display5DayForecast();
 
-
+//display 5-day forecast for user-input city
 function displayInput5DayForecast() {
   var cityName = $("#city").val().trim();
   var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
@@ -313,19 +326,32 @@ function displayInput5DayForecast() {
   }); //closes the ajax call
 }; //closes display5DayForecast
 
+//display recently searched cities
 function displayHistory() {
   $(".recentCities").prepend($("<div class='searchAgain'>")).prepend($("#city").val().toUpperCase().trim());
 }; 
 
+//this function will run when user clicks on a previously searched city
+$(".searchAgain").on("click", function(){
+ //run displayInputCurrentWeather() but have to substitute the clicked city's name into the queryURL
+ //run displayInput5DayForecast() but have to substitute the clicked city's name into the queryURL
+});
+
+
+
 
 }); //closes document.ready
 
-/* NOTES DURING DEVELOPMENT========================================
+/* DEVELOPMENT NOTES========================================
 
-Need to get previous searches stored locally
-Need to properly format Date on current and forecast weather
-Figure out UV Index for current weather
+Remaining MVP:
+Get more than one previous search stored locally
+Properly format Date on current and forecast weather
+Clean up CSS 
+
+
+Enhancements:
 Should add alert when city not found
-
+Allow City, State input
 
 ===========================================================================*/
