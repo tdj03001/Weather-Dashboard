@@ -352,6 +352,7 @@ $(".searchAgain").on("click", function(){
 
 Remaining MVP:
 Get more than one previous search stored locally and display them all on page load/refresh
+Enable clicking of recent searches to perform search
 Properly format Date on current and forecast weather
 Clean up CSS 
 
