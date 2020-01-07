@@ -15,9 +15,12 @@ $("#citySearch").on("click", function(event) {
 var searchedCity = localStorage.getItem("searchTerm");
   $(".recentCities").text(searchedCity);
 
-//displays current weather for default city
+//displays current weather for default city, or most recently searched city
 function displayCurrentWeather() {
   var cityName = "Conshohocken";  
+  if (localStorage.getItem("searchTerm") !== null) {
+    cityName = localStorage.getItem("searchTerm")
+  }
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
   $.ajax({
@@ -119,6 +122,9 @@ function displayInputCurrentWeather() {
 //displays 5-day forecast for default city 
 function display5DayForecast() {
   var cityName = "Conshohocken";
+  if (localStorage.getItem("searchTerm") !== null) {
+    cityName = localStorage.getItem("searchTerm")
+  }
   var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
 
   $.ajax({
