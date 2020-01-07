@@ -40,7 +40,7 @@ function displayCurrentWeather() {
     var pOne = $("<p>").text("City: " + city);
     currentWeather.append(pOne);
 
-    var date = response.dt; //convert from UTC
+    var date = moment.unix(response.dt).format("MM/DD/YYYY");
     var pTwo = $("<p>").text("Date: " + date);
     currentWeather.append(pTwo);
 
