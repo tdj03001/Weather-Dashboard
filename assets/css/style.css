@@ -8,13 +8,6 @@ h1 {
   background-color: midnightblue;
 }
 
-.container {
-  background-color: rgb(252, 247, 247);
-  margin-right: 10px;
-  width: 20%;
-  float: left;  
-}
-
 form.example input[type=text] {
   padding: 10px;
   font-size: 17px;
@@ -29,7 +22,7 @@ form.example button {
   color: white;
   font-size: 17px;
   border: 1px solid grey;
-  border-left: none; /* Prevent double borders */
+  border-left: none; 
   cursor: pointer;
 }
 
