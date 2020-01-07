@@ -5,10 +5,10 @@ $("#citySearch").on("click", function(event) {
   displayInputCurrentWeather();
   displayInput5DayForecast();
   displayHistory();
-}); //closes click event
+}); 
 
 function displayCurrentWeather() {
-  var cityName = "Boston";  
+  var cityName = "Conshohocken";  
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
   $.ajax({
@@ -42,12 +42,22 @@ function displayCurrentWeather() {
     var windSpeed = response.wind.speed;
     var pFive = $("<p>").text("Wind Speed: " + windSpeed + " mph");
     currentWeather.append(pFive);
+
+    var lat = response.coord.lat;
+    var lon = response.coord.lon;
+    var cityNameUV = "Boston";  
+    var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
+
+    $.ajax({
+      url: queryURLUV,
+      method: "GET"
+    }).then(function(response) {
     
-    var uvIndex = response.uvindex; //whatever "uv index" is called
+    var uvIndex = response.value; //whatever "uv index" is called
     var pSix = $("<p>").text("UV Index: " + uvIndex);
     currentWeather.append(pSix);
-
-  }); //closes ajax call
+    }); //closes UV Index ajax call
+  }); //closes first ajax call (everything but UV)
 }; //closes displayCurrentWeather function
 
 displayCurrentWeather();
@@ -105,7 +115,7 @@ function display5DayForecast() {
     method: "GET"
   }).then(function(response) {
 
-  var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather>"));
+  var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather'>"));
 
   var date = response.list[3].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -123,7 +133,7 @@ function display5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayOneForecast.append(pFour);
   
-  var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather>"));
+  var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather'>"));
 
   var date = response.list[11].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -141,7 +151,7 @@ function display5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayTwoForecast.append(pFour);
   
-  var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather>"));
+  var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather'>"));
 
   var date = response.list[19].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -159,7 +169,7 @@ function display5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayThreeForecast.append(pFour);
 
-  var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather>"));
+  var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather'>"));
 
   var date = response.list[27].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -177,7 +187,7 @@ function display5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayFourForecast.append(pFour);
   
-  var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather>"));
+  var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather'>"));
 
   var date = response.list[35].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -210,7 +220,7 @@ function displayInput5DayForecast() {
   }).then(function(response) {
     $("#forecastWeather").empty();
 
-  var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather>"));
+  var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather'>"));
 
   var date = response.list[3].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -228,7 +238,7 @@ function displayInput5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayOneForecast.append(pFour);
   
-  var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather>"));
+  var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather'>"));
 
   var date = response.list[11].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -246,7 +256,7 @@ function displayInput5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayTwoForecast.append(pFour);
   
-  var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather>"));
+  var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather'>"));
 
   var date = response.list[19].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -264,7 +274,7 @@ function displayInput5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayThreeForecast.append(pFour);
 
-  var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather>"));
+  var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather'>"));
 
   var date = response.list[27].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
@@ -282,7 +292,7 @@ function displayInput5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayFourForecast.append(pFour);
   
-  var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather>"));
+  var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather'>"));
 
   var date = response.list[35].dt; //convert from UTC
   var pTwo = $("<p>").text("Date: " + date);
