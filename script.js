@@ -375,13 +375,10 @@ $(".searchAgain").on("click", function(){
 Remaining MVP:
 Get more than one previous search stored locally and display them all on page load/refresh
 Enable clicking of recent searches to perform search
-Properly format Date forecast weather
 Clean up CSS 
-
-Fix date for 5-day. Make sure it's pulling new dates for each of the 5 days
 
 Enhancements:
 Should add alert when city not found
-Allow City, State input
+Allow "City, State" input
 
 ===========================================================================*/
