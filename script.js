@@ -58,7 +58,10 @@ function displayCurrentWeather() {
 
     var lat = response.coord.lat;
     var lon = response.coord.lon;
-    var cityNameUV = "Boston";  
+    var cityNameUV = $("#city").val().trim();  
+    if (localStorage.getItem("searchTerm") !== null) {
+      cityNameUV = localStorage.getItem("searchTerm")
+    }
     var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
     $.ajax({
@@ -66,12 +69,12 @@ function displayCurrentWeather() {
       method: "GET"
     }).then(function(response) {
     
-    var uvIndex = response.value; //whatever "uv index" is called
+    var uvIndex = response.value; 
     var pSix = $("<p>").text("UV Index: " + uvIndex);
     currentWeather.append(pSix);
-    }); //closes UV Index ajax call
-  }); //closes first ajax call (everything but UV)
-}; //closes displayCurrentWeather function
+    }); 
+  });
+};
 
 //display current weather for default city on page load
 displayCurrentWeather();
@@ -79,6 +82,9 @@ displayCurrentWeather();
 //displays current weather for user-input city
 function displayInputCurrentWeather() {
   var cityName = $("#city").val().trim();  
+    if (localStorage.getItem("searchTerm") !== null) {
+      cityNameUV = localStorage.getItem("searchTerm")
+    }
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
   $.ajax({
@@ -97,7 +103,7 @@ function displayInputCurrentWeather() {
     var pOne = $("<p>").text("City: " + city);
     currentWeather.append(pOne);
 
-    var date = response.dt; //convert from UTC
+    var date = moment.unix(response.dt).format("MM/DD/YYYY");
     var pTwo = $("<p>").text("Date: " + date);
     currentWeather.append(pTwo);
 
@@ -112,13 +118,28 @@ function displayInputCurrentWeather() {
     var windSpeed = response.wind.speed;
     var pFive = $("<p>").text("Wind Speed: " + windSpeed + " mph");
     currentWeather.append(pFive);
+
+    var lat = response.coord.lat;
+    var lon = response.coord.lon;
+    var cityNameUV = $("#city").val().trim();  
+    if (localStorage.getItem("searchTerm") !== null) {
+      cityNameUV = localStorage.getItem("searchTerm")
+    }
+    var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
+
+    $.ajax({
+      url: queryURLUV,
+      method: "GET"
+    }).then(function(response) {
     
-    var uvIndex = response.uvindex; //whatever "uv index" is called
+    var uvIndex = response.value; 
+    console.log(response);
     var pSix = $("<p>").text("UV Index: " + uvIndex);
     currentWeather.append(pSix);
+    });
+  });
 
-  }); //closes ajax call
-}; //closes displayInputCurrentWeather function
+};
 
 //displays 5-day forecast for default city 
 function display5DayForecast() {
@@ -135,7 +156,7 @@ function display5DayForecast() {
 
   var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather'>"));
 
-  var date = response.list[3].dt; //convert from UTC
+  var date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayOneForecast.append(pTwo);
   
@@ -153,7 +174,7 @@ function display5DayForecast() {
   
   var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather'>"));
 
-  var date = response.list[11].dt; //convert from UTC
+  date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayTwoForecast.append(pTwo);
   
@@ -171,7 +192,7 @@ function display5DayForecast() {
   
   var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather'>"));
 
-  var date = response.list[19].dt; //convert from UTC
+  date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayThreeForecast.append(pTwo);
   
@@ -189,7 +210,7 @@ function display5DayForecast() {
 
   var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather'>"));
 
-  var date = response.list[27].dt; //convert from UTC
+  date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayFourForecast.append(pTwo);
   
@@ -207,7 +228,7 @@ function display5DayForecast() {
   
   var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather'>"));
 
-  var date = response.list[35].dt; //convert from UTC
+  date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayFiveForecast.append(pTwo);
   
@@ -223,8 +244,8 @@ function display5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayFiveForecast.append(pFour);
 
-  }); //closes the ajax call
-}; //closes display5DayForecast
+  });
+};
 
 //display 5-day forecast for default city on page load
 display5DayForecast();
@@ -242,7 +263,7 @@ function displayInput5DayForecast() {
 
   var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather'>"));
 
-  var date = response.list[3].dt; //convert from UTC
+  var date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayOneForecast.append(pTwo);
   
@@ -260,7 +281,7 @@ function displayInput5DayForecast() {
   
   var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather'>"));
 
-  var date = response.list[11].dt; //convert from UTC
+  date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayTwoForecast.append(pTwo);
   
@@ -278,7 +299,7 @@ function displayInput5DayForecast() {
   
   var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather'>"));
 
-  var date = response.list[19].dt; //convert from UTC
+  date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayThreeForecast.append(pTwo);
   
@@ -296,7 +317,7 @@ function displayInput5DayForecast() {
 
   var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather'>"));
 
-  var date = response.list[27].dt; //convert from UTC
+  date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayFourForecast.append(pTwo);
   
@@ -314,7 +335,7 @@ function displayInput5DayForecast() {
   
   var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather'>"));
 
-  var date = response.list[35].dt; //convert from UTC
+  date = moment.unix(response.dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayFiveForecast.append(pTwo);
   
@@ -330,8 +351,8 @@ function displayInput5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   dayFiveForecast.append(pFour);
 
-  }); //closes the ajax call
-}; //closes display5DayForecast
+  });
+};
 
 //display recently searched cities
 function displayHistory() {
@@ -354,9 +375,10 @@ $(".searchAgain").on("click", function(){
 Remaining MVP:
 Get more than one previous search stored locally and display them all on page load/refresh
 Enable clicking of recent searches to perform search
-Properly format Date on current and forecast weather
+Properly format Date forecast weather
 Clean up CSS 
 
+Fix date for 5-day. Make sure it's pulling new dates for each of the 5 days
 
 Enhancements:
 Should add alert when city not found
