@@ -156,7 +156,7 @@ function display5DayForecast() {
 
   var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather'>"));
 
-  var date = moment.unix(response.dt).format("MM/DD/YYYY");
+  var date = moment.unix(response.list[0].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayOneForecast.append(pTwo);
   
@@ -174,7 +174,7 @@ function display5DayForecast() {
   
   var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather'>"));
 
-  date = moment.unix(response.dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[8].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayTwoForecast.append(pTwo);
   
@@ -192,7 +192,7 @@ function display5DayForecast() {
   
   var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather'>"));
 
-  date = moment.unix(response.dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[16].dt).format("MM/DD/YYYY");;
   var pTwo = $("<p>").text("Date: " + date);
   dayThreeForecast.append(pTwo);
   
@@ -210,7 +210,7 @@ function display5DayForecast() {
 
   var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather'>"));
 
-  date = moment.unix(response.dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[24].dt).format("MM/DD/YYYY");;
   var pTwo = $("<p>").text("Date: " + date);
   dayFourForecast.append(pTwo);
   
@@ -228,7 +228,7 @@ function display5DayForecast() {
   
   var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather'>"));
 
-  date = moment.unix(response.dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[32].dt).format("MM/DD/YYYY");;
   var pTwo = $("<p>").text("Date: " + date);
   dayFiveForecast.append(pTwo);
   
@@ -263,7 +263,7 @@ function displayInput5DayForecast() {
 
   var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather'>"));
 
-  var date = moment.unix(response.dt).format("MM/DD/YYYY");
+  var date = moment.unix(response.list[0].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayOneForecast.append(pTwo);
   
@@ -281,7 +281,7 @@ function displayInput5DayForecast() {
   
   var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather'>"));
 
-  date = moment.unix(response.dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[8].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayTwoForecast.append(pTwo);
   
@@ -299,7 +299,7 @@ function displayInput5DayForecast() {
   
   var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather'>"));
 
-  date = moment.unix(response.dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[16].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayThreeForecast.append(pTwo);
   
@@ -317,7 +317,7 @@ function displayInput5DayForecast() {
 
   var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather'>"));
 
-  date = moment.unix(response.dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[24].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayFourForecast.append(pTwo);
   
@@ -335,7 +335,7 @@ function displayInput5DayForecast() {
   
   var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather'>"));
 
-  date = moment.unix(response.dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[32].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   dayFiveForecast.append(pTwo);
   
