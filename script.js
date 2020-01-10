@@ -95,6 +95,7 @@ function displayInputCurrentWeather() {
 
     var currentWeather = $("#currentWeather").append($("<div class='currentWeather'>"));
 
+    currentWeather.append($("<h2>")).text("Current Weather");
     var icon = response.weather[0].icon;
     var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
     currentWeather.append(weatherImg);
