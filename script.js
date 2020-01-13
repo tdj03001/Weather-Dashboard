@@ -21,7 +21,7 @@ function displayCurrentWeather() {
   if (localStorage.getItem("searchTerm") !== null) {
     cityName = localStorage.getItem("searchTerm")
   }
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
   $.ajax({
     url: queryURL,
@@ -62,7 +62,7 @@ function displayCurrentWeather() {
     if (localStorage.getItem("searchTerm") !== null) {
       cityNameUV = localStorage.getItem("searchTerm")
     }
-    var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
+    var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
     $.ajax({
       url: queryURLUV,
@@ -85,7 +85,7 @@ function displayInputCurrentWeather() {
     if (localStorage.getItem("searchTerm") !== null) {
       cityNameUV = localStorage.getItem("searchTerm")
     }
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
   $.ajax({
     url: queryURL,
@@ -126,7 +126,7 @@ function displayInputCurrentWeather() {
     if (localStorage.getItem("searchTerm") !== null) {
       cityNameUV = localStorage.getItem("searchTerm")
     }
-    var queryURLUV = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
+    var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
     $.ajax({
       url: queryURLUV,
@@ -148,7 +148,7 @@ function display5DayForecast() {
   if (localStorage.getItem("searchTerm") !== null) {
     cityName = localStorage.getItem("searchTerm")
   }
-  var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
 
   $.ajax({
     url: queryURL,
@@ -254,7 +254,7 @@ display5DayForecast();
 //display 5-day forecast for user-input city
 function displayInput5DayForecast() {
   var cityName = $("#city").val().trim();
-  var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
 
   $.ajax({
     url: queryURL,
