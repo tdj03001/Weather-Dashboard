@@ -171,7 +171,7 @@ function display5DayForecast() {
   var pFour = $("<p>").text("Humidity " + humidity + "%");
   $("#dayOne").append(pFour);
 
-  date = moment.unix(response.list[0].dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[8].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
   $("#dayTwo").append(pTwo);
   
