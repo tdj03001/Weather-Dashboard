@@ -26,6 +26,36 @@ form.example button {
   cursor: pointer;
 }
 
+#dayOne {
+  float: left;
+  margin-right: 50px;
+  padding: 20px;
+}
+
+#dayTwo {
+  float: left;
+  margin-right: 50px;
+  padding: 20px;
+}
+
+#dayThree {
+  float: left;
+  margin-right: 50px;
+  padding: 20px;
+}
+
+#dayFour {
+  float: left;
+  margin-right: 50px;
+  padding: 20px;
+}
+
+#dayFive {
+  float: left;
+  margin-right: 50px;
+  padding: 20px;
+}
+
 /* .searchAgain {
   width: 100%;
 } */
