@@ -31,7 +31,7 @@
         </form>
       </div>
       <div class="col-md-12">
-        <h4>Recent Searches:</h4>
+        <h4>Recent Searches:</h4> 
       </div>
       <div class="col-md-12 recentCities">
       </div>  
@@ -49,9 +49,13 @@
         <h2>5-Day Forecast</h2>
       </div>
       <div class="col-md-12">
-        <div class="card">
-          <div id="forecastWeather" class="card-body text-white bg-primary mb-3" style="max-width: 18rem;"></div>
-        </div>
+       
+        <div id="dayOne" class="card-body text-white bg-primary mb-3"></div>
+        <div id="dayTwo" class="card-body text-white bg-primary mb-3"></div>
+        <div id="dayThree" class="card-body text-white bg-primary mb-3"></div>
+        <div id="dayFour" class="card-body text-white bg-primary mb-3"></div>
+        <div id="dayFive" class="card-body text-white bg-primary mb-3"></div>
+        
       </div>
     </div>
   </div>
@@ -64,7 +68,9 @@
 <!-- 
 DEVELOPMENT NOTES =============================================
 
-"Unstack" everything in responsive design to match prototype
+- "Unstack" everything in responsive design to match prototype
+- Only show Recent Searches if local storage history is present
+- Change recentCities div to section. Need to align horizontally.
 
 ===============================================================
  -->
