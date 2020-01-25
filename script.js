@@ -134,7 +134,7 @@ function displayInputCurrentWeather() {
     }).then(function(response) {
     
     var uvIndex = response.value; 
-    console.log(response);
+    console.log(response.list[0]);
     var pSix = $("<p>").text("UV Index: " + uvIndex);
     currentWeather.append(pSix);
     });
@@ -155,95 +155,85 @@ function display5DayForecast() {
     method: "GET"
   }).then(function(response) {
 
-  var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather'>"));
-
   var date = moment.unix(response.list[0].dt).format("MM/DD/YYYY");
-  var pTwo = $("<p>").text("Date: " + date);
-  dayOneForecast.append(pTwo);
+  var pOne = $("<p>").text("Date: " + date);
+  $("#dayOne").append(pOne);
   
   var icon = response.list[3].weather[0].icon;
   var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
-  dayOneForecast.append(weatherImg);
+  $("#dayOne").append(weatherImg);
 
   var temperature = response.list[3].main.temp;
   var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
-  dayOneForecast.append(pThree);
+  $("#dayOne").append(pThree);
 
   var humidity = response.list[3].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
-  dayOneForecast.append(pFour);
-  
-  var dayTwoForecast = $("#forecastWeather").append($("<div class='dayTwoWeather'>"));
+  $("#dayOne").append(pFour);
 
-  date = moment.unix(response.list[8].dt).format("MM/DD/YYYY");
+  date = moment.unix(response.list[0].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
-  dayTwoForecast.append(pTwo);
+  $("#dayTwo").append(pTwo);
   
   var icon = response.list[11].weather[0].icon;
   var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
-  dayTwoForecast.append(weatherImg);
+  $("#dayTwo").append(weatherImg);
 
   var temperature = response.list[11].main.temp;
   var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
-  dayTwoForecast.append(pThree);
+  $("#dayTwo").append(pThree);
 
   var humidity = response.list[11].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
-  dayTwoForecast.append(pFour);
+  $("#dayTwo").append(pFour);
   
-  var dayThreeForecast = $("#forecastWeather").append($("<div class='dayThreeWeather'>"));
-
-  date = moment.unix(response.list[16].dt).format("MM/DD/YYYY");;
+  date = moment.unix(response.list[16].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
-  dayThreeForecast.append(pTwo);
+  $("#dayThree").append(pTwo);
   
   var icon = response.list[19].weather[0].icon;
   var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
-  dayThreeForecast.append(weatherImg);
+  $("#dayThree").append(weatherImg);
 
   var temperature = response.list[19].main.temp;
   var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
-  dayThreeForecast.append(pThree);
+  $("#dayThree").append(pThree);
 
   var humidity = response.list[19].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
-  dayThreeForecast.append(pFour);
+  $("#dayThree").append(pFour);
 
-  var dayFourForecast = $("#forecastWeather").append($("<div class='dayFourWeather'>"));
-
-  date = moment.unix(response.list[24].dt).format("MM/DD/YYYY");;
+  date = moment.unix(response.list[24].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
-  dayFourForecast.append(pTwo);
+  $("#dayFour").append(pTwo);
   
   var icon = response.list[27].weather[0].icon;
   var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
-  dayFourForecast.append(weatherImg);
+  $("#dayFour").append(weatherImg);
 
   var temperature = response.list[27].main.temp;
   var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
-  dayFourForecast.append(pThree);
+  $("#dayFour").append(pThree);
 
   var humidity = response.list[27].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
-  dayFourForecast.append(pFour);
-  
-  var dayFiveForecast = $("#forecastWeather").append($("<div class='dayFiveWeather'>"));
+  $("#dayFour").append(pFour);
 
-  date = moment.unix(response.list[32].dt).format("MM/DD/YYYY");;
+  date = moment.unix(response.list[32].dt).format("MM/DD/YYYY");
   var pTwo = $("<p>").text("Date: " + date);
-  dayFiveForecast.append(pTwo);
+  $("#dayFive").append(pTwo);
   
   var icon = response.list[35].weather[0].icon;
   var weatherImg = $("<img>").attr("src", ("https://openweathermap.org/img/w/" + icon + ".png"));
-  dayFiveForecast.append(weatherImg);
+  $("#dayFive").append(weatherImg);
 
   var temperature = response.list[35].main.temp;
   var pThree = $("<p>").text("Temp. " + temperature + "  \u2109");
-  dayFiveForecast.append(pThree);
+  $("#dayFive").append(pThree);
 
   var humidity = response.list[35].main.humidity;
   var pFour = $("<p>").text("Humidity " + humidity + "%");
-  dayFiveForecast.append(pFour);
+  $("#dayFive").append(pFour);
 
   });
 };
@@ -262,6 +252,7 @@ function displayInput5DayForecast() {
   }).then(function(response) {
     $("#forecastWeather").empty();
 
+  console.log(response);
   var dayOneForecast = $("#forecastWeather").append($("<div class='dayOneWeather'>"));
 
   var date = moment.unix(response.list[0].dt).format("MM/DD/YYYY");
