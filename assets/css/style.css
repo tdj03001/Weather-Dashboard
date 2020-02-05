@@ -56,6 +56,10 @@ form.example button {
   padding: 20px;
 }
 
-/* .searchAgain {
-  width: 100%;
-} */
+.recentCities {
+  display: none;
+}
+
+.recentSearches {
+  display: none;
+}
