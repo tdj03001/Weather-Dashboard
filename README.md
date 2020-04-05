@@ -1,4 +1,4 @@
-# UPenn-Week-6-Homework-WeatherDashboard  
+# Weather Dashboard  
 
 ## Purpose
 
@@ -11,4 +11,11 @@ To be able to check the weather for today and for 5 days ahead.
 
  ![Screenshot](assets/images/WeatherDashboard.png)
 
- #### Link to webapp:  https://tdj03001.github.io/UPenn-Week-6-Homework-WeatherDashboard/
+ #### Live Site
+ 
+ https://tdj03001.github.io/Weather-Dashboard/
+ 
+ #### GitHub Repo
+ 
+ https://github.com/tdj03001/Weather-Dashboard
+ 
