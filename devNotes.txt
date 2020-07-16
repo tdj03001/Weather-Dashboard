@@ -1,0 +1,8 @@
+Remaining MVP:
+- Get more than one previous search stored locally and display them all on page load/refresh
+- Enable clicking of recent searches to perform search
+- Clean up CSS
+
+Enhancements:
+- Should add alert when city not found
+- Allow "City, State" input
