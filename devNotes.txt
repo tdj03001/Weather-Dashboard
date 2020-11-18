@@ -1,8 +1,7 @@
-Remaining MVP:
-- Get more than one previous search stored locally and display them all on page load/refresh
-- Enable clicking of recent searches to perform search
-- Clean up CSS
-
 Enhancements:
-- Should add alert when city not found
+- Get more than one previous search stored locally
+- Display all local storage items on page load/refresh
+- Limit displayed results from local storage to 5
+- Enable clicking of recent searches to perform search
+- Add alert when city not found
 - Allow "City, State" input
