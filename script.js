@@ -1,27 +1,52 @@
 $(document).ready(function () {
 
   //function for button click
+
+  var cityList = [];
+
   $("#citySearch").on("click", function (event) {
     event.preventDefault();
-    displayInputCurrentWeather();
-    displayInput5DayForecast();
+
     var value = $(this).siblings("#city").val().toUpperCase();
     var city = $(this).parent().attr("id");
-    localStorage.setItem(city, value);
-    showRecent();
-    displayHistory();
-  });
+    cityList.unshift(value);
+    localStorage.setItem(city, JSON.stringify(cityList));
+    displayInputCurrentWeather();
+    displayInput5DayForecast();
+  })
 
-  //on page load, get local storage and diplay on page
-  var searchedCity = localStorage.getItem("searchTerm");
-  $(".recentCities").text(searchedCity);
 
-  //displays current weather for default city, or most recently searched city
+
+  //=============work in progress start========================
+
+  //on page load, get local storage, display on page as a link
+  // $.getJSON(full_name, {}, function (data) {
+
+  //   $.each(data, function (index, field) {
+  //     if (index == 'reference') {
+  //       $("div").append('<a class="jMyLink">' + field + "</a><br/>");
+  //     } else {
+  //       $("div").append(index + " : " + field + "<br>");
+  //     }
+  //   });
+  // });
+  // $(".jMylink").on('click', function () {
+  //   // Place ajax call here
+  // });
+
+  //======== work in progress end =====================
+
+  //displays current weather for default city, or most recently searched city, and displays recent searches
   function displayCurrentWeather() {
     var cityName = "Conshohocken";
     if (localStorage.getItem("searchTerm") !== null) {
-      cityName = localStorage.getItem("searchTerm")
+      var searchedCity = localStorage.getItem("searchTerm");
+      cityName = JSON.parse(searchedCity)[0];
+      $(".recentSearches").css("display", "block");
+      $(".recentCities").css("display", "block");
+      $(".recentCities").prepend($("<div class='searchAgain'>")).prepend(cityName.toUpperCase().trim());
     }
+
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
     $.ajax({
@@ -59,10 +84,7 @@ $(document).ready(function () {
 
       var lat = response.coord.lat;
       var lon = response.coord.lon;
-      var cityNameUV = $("#city").val().trim();
-      if (localStorage.getItem("searchTerm") !== null) {
-        cityNameUV = localStorage.getItem("searchTerm")
-      }
+
       var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
       $.ajax({
@@ -77,14 +99,18 @@ $(document).ready(function () {
     });
   };
 
-  //display current weather for default city on page load
+  //display current weather on page load
   displayCurrentWeather();
 
   //displays current weather for user-input city
   function displayInputCurrentWeather() {
     var cityName = $("#city").val().trim();
     if (localStorage.getItem("searchTerm") !== null) {
-      cityNameUV = localStorage.getItem("searchTerm")
+      var searchedCity = localStorage.getItem("searchTerm");
+      storedCity = JSON.parse(searchedCity)[0];
+      $(".recentSearches").css("display", "block");
+      $(".recentCities").css("display", "block");
+      $(".recentCities").prepend($("<div class='searchAgain'>")).prepend(storedCity.toUpperCase().trim());
     }
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
@@ -123,10 +149,7 @@ $(document).ready(function () {
 
       var lat = response.coord.lat;
       var lon = response.coord.lon;
-      var cityNameUV = $("#city").val().trim();
-      if (localStorage.getItem("searchTerm") !== null) {
-        cityNameUV = localStorage.getItem("searchTerm")
-      }
+
       var queryURLUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
       $.ajax({
@@ -142,11 +165,12 @@ $(document).ready(function () {
 
   };
 
-  //displays 5-day forecast for default city 
+  //displays 5-day forecast for default city, or most recently searched city
   function display5DayForecast() {
     var cityName = "Conshohocken";
     if (localStorage.getItem("searchTerm") !== null) {
-      cityName = localStorage.getItem("searchTerm")
+      var searchedCity = localStorage.getItem("searchTerm");
+      cityName = JSON.parse(searchedCity)[0];
     }
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&units=imperial&appid=47dc3b56adc3a5773ac8eaebd8b0c012";
 
@@ -238,7 +262,7 @@ $(document).ready(function () {
     });
   };
 
-  //display 5-day forecast for default city on page load
+  //display 5-day forecast on page load
   display5DayForecast();
 
   //display 5-day forecast for user-input city
@@ -345,19 +369,6 @@ $(document).ready(function () {
     });
   };
 
-  function showRecent() {
-    if (localStorage.getItem("searchTerm")) {
-      $(".recentCities").css("display", "block");
-      $(".recentSearches").css("display", "block");
-    }
-  }
-  showRecent();
-
-
-  //display recently searched cities
-  function displayHistory() {
-    $(".recentCities").prepend($("<div class='searchAgain'>")).prepend($("#city").val().toUpperCase().trim());
-  };
 
   //this function will run when user clicks on a previously searched city
   $(".searchAgain").on("click", function () {
