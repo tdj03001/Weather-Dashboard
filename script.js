@@ -6,7 +6,6 @@ $(document).ready(function () {
 
   $("#citySearch").on("click", function (event) {
     event.preventDefault();
-
     var value = $(this).siblings("#city").val().toUpperCase();
     var city = $(this).parent().attr("id");
     cityList.unshift(value);
@@ -14,27 +13,6 @@ $(document).ready(function () {
     displayInputCurrentWeather();
     displayInput5DayForecast();
   })
-
-
-
-  //=============work in progress start========================
-
-  //on page load, get local storage, display on page as a link
-  // $.getJSON(full_name, {}, function (data) {
-
-  //   $.each(data, function (index, field) {
-  //     if (index == 'reference') {
-  //       $("div").append('<a class="jMyLink">' + field + "</a><br/>");
-  //     } else {
-  //       $("div").append(index + " : " + field + "<br>");
-  //     }
-  //   });
-  // });
-  // $(".jMylink").on('click', function () {
-  //   // Place ajax call here
-  // });
-
-  //======== work in progress end =====================
 
   //displays current weather for default city, or most recently searched city, and displays recent searches
   function displayCurrentWeather() {
@@ -107,7 +85,7 @@ $(document).ready(function () {
     var cityName = $("#city").val().trim();
     if (localStorage.getItem("searchTerm") !== null) {
       var searchedCity = localStorage.getItem("searchTerm");
-      storedCity = JSON.parse(searchedCity)[0];
+      var storedCity = JSON.parse(searchedCity)[0];
       $(".recentSearches").css("display", "block");
       $(".recentCities").css("display", "block");
       $(".recentCities").prepend($("<div class='searchAgain'>")).prepend(storedCity.toUpperCase().trim());
@@ -377,19 +355,4 @@ $(document).ready(function () {
   });
 
 
-
-
 }); //closes document.ready
-
-/* DEVELOPMENT NOTES========================================
-
-Remaining MVP:
-Get more than one previous search stored locally and display them all on page load/refresh
-Enable clicking of recent searches to perform search
-Clean up CSS
-
-Enhancements:
-Should add alert when city not found
-Allow "City, State" input
-
-===========================================================================*/
