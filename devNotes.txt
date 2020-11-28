@@ -5,4 +5,4 @@ Enhancements:
 - Enable clicking of recent searches to perform search
 - Add alert when city not found
 - Allow "City, State" input
-- When searching city after city, local storage adds to array no problem. BUT, once refreshed, the first new search resets local storage. Need to fix this
+- When searching city after city, local storage adds to array no problem. BUT, once refreshed, the first new search resets local storage. Need to fix this so page load doesn't create a new array
