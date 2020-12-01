@@ -71,13 +71,14 @@ $(document).ready(function () {
   //displays current weather for user-input city
   function displayInputCurrentWeather() {
     var cityName = $("#city").val().trim();
-    if (localStorage.getItem("searchTerm") !== null) {
-      var searchedCity = localStorage.getItem("searchTerm");
-      var storedCity = JSON.parse(searchedCity)[0];
-      $(".recentSearches").css("display", "block");
-      $(".recentCities").css("display", "block");
-      $(".recentCities").prepend($("<div class='searchAgain'>")).prepend(storedCity.toUpperCase().trim());
+    var searchedCity = localStorage.getItem("searchTerm");
+    $(".recentSearches").css("display", "block");
+    $(".recentCities").css("display", "block");
+    $(".recentCities").empty();
+    for (i = 0; i < 5; i++) {
+      $(".recentCities").append($("<div class='searchAgain'>")).append(JSON.parse(searchedCity)[i]);
     }
+
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
 
     $.ajax({
