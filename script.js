@@ -1,19 +1,5 @@
 $(document).ready(function () {
 
-  //function for button click
-
-  var cityList = [];
-
-  $("#citySearch").on("click", function (event) {
-    event.preventDefault();
-    var value = $(this).siblings("#city").val().toUpperCase();
-    var city = $(this).parent().attr("id");
-    cityList.unshift(value);
-    localStorage.setItem(city, JSON.stringify(cityList));
-    displayInputCurrentWeather();
-    displayInput5DayForecast();
-  })
-
   //displays current weather for default city, or most recently searched city, and displays recent searches
   function displayCurrentWeather() {
     var cityName = "Conshohocken";
@@ -346,6 +332,23 @@ $(document).ready(function () {
 
     });
   };
+
+
+  //function for button click
+  $("#citySearch").on("click", function (event) {
+    event.preventDefault();
+    var value = $("#citySearch").siblings("#city").val().toUpperCase();
+    var city = $("#citySearch").parent().attr("id");
+    if (localStorage.getItem("searchTerm") !== null) {
+      var cityList = JSON.parse(localStorage.getItem("searchTerm"));
+    } else {
+      cityList = [];
+    }
+    cityList.unshift(value);
+    localStorage.setItem(city, JSON.stringify(cityList));
+    displayInputCurrentWeather();
+    displayInput5DayForecast();
+  });
 
 
   //this function will run when user clicks on a previously searched city
