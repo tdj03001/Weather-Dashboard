@@ -1,10 +1,7 @@
 Enhancements:
-- Get more than one previous search stored locally
-- Display all local storage items on page load/refresh
-- Limit displayed results from local storage to 5
+- Display up to 5 local storage items on page load/refresh
 - Enable clicking of recent searches to perform search
 - Add alert when city not found
+- When city not found, don't add that city to the page
+- When city not found, don't add that city to local storage
 - Allow "City, State" input
-- When searching city after city, local storage adds to array no problem. BUT, once refreshed, 
-   the first new search resets local storage. Need to fix this so page load doesn't create a new array. It should add to existing
-   array instead
