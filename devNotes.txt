@@ -1,6 +1,4 @@
 Enhancements:
-- Display up to 5 local storage items on page load/refresh
-- Display ONLY 5 recently searched local storage items on button click
 - Enable clicking of recent searches to perform search
 - Add alert when city not found
 - When city not found, don't add that city to the page
