@@ -8,7 +8,9 @@ $(document).ready(function () {
       cityName = JSON.parse(searchedCity)[0];
       $(".recentSearches").css("display", "block");
       $(".recentCities").css("display", "block");
-      $(".recentCities").prepend($("<div class='searchAgain'>")).prepend(cityName.toUpperCase().trim());
+      for (i = 0; i < 5; i++) {
+        $(".recentCities").append($("<div class='searchAgain'>")).append(JSON.parse(searchedCity)[i]);
+      }
     }
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=47dc3b56adc3a5773ac8eaebd8b0c012&units=imperial";
