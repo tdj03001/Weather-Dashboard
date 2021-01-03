@@ -4,3 +4,5 @@ Enhancements:
 - Add alert when city not found
 - When city not found, don't add that city to the page
 - When city not found, don't add that city to local storage
+- The jQuery click event for searchAgain should be able to identify the element clicked by it's dynamically created
+   class or ID, so, need to implement dynamically created class or ID when adding recent cities to the page list
