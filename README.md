@@ -2,7 +2,7 @@
 
 ## Purpose
 
-To be able to check the weather for today and for 5 days ahead.
+To be able to check the weather for today and for 5 days ahead easily.
 
 
 ## Usage
